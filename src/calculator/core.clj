@@ -1,6 +1,5 @@
 (ns calculator.core)
 
-(defn addition
+(def add
   "Adds numbers"
-  [x y]
-  (+ x y))
+  +)

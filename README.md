@@ -18,7 +18,7 @@ First, create a fresh new project:
 lein new calculator
 ``` 
 
-Create a new folder called `features` and add a new file called `addition.clj` in that directory with the following content: 
+Create a `features` folder and add a new file named `addition.clj` in that folder with the following content: 
 
 ``` gherkin
 Feature: Addition
@@ -42,30 +42,26 @@ named `addition.clj` in the `features/step_definitions` folder:
 (use 'clojure.test)
 
 (def world (atom {:inputs []
-                  :result nil}))
+                  :actual-result nil}))
 
 (Given #"^I have entered (\d+) into the calculator$" [input]
-       (swap! world update :inputs conj (bigdec input))
-       )
+       (swap! world update :inputs conj (bigdec input)))
 
 (When #"^I press add$" []
-      (swap! world assoc :actual-result (reduce + (:inputs @world))))
-
+      (swap! world assoc :actual-result (reduce add (:inputs @world))))
 
 (Then #"^the result should be (\d+) on the screen$" [result]
       (is (= (bigdec result) (:actual-result @world))))
 ```
  
-
 It's time to implement the complex mechanic of our calculator. Create the following namespace in the `src` directory:
 
 ``` clojure
 (ns calculator.core)
 
-(defn addition
+(def add
   "Adds numbers"
-  [x y]
-  (+ x y))
+  +)
 ```
 
 Update your `project.clj` and add the [lein-cucumber](https://github.com/nilswloka/lein-cucumber) plugin:
@@ -73,6 +69,21 @@ Update your `project.clj` and add the [lein-cucumber](https://github.com/nilswlo
 ``` clojure
 :plugins [[lein-cucumber "1.0.2"]]
 ```
+
+Then add a clojure.test test as instructed on the [cucumber-jvm clojure how-to](https://github.com/cucumber/cucumber-jvm/tree/master/clojure) :
+
+``` clojure
+(ns calculator.core-test
+  (:require [clojure.test :refer [deftest]])
+  
+(deftest run-cukes
+  (. cucumber.api.cli.Main (main
+                             (into-array ["--format"
+                                          "pretty"
+                                          "--glue"
+                                          "features/step_definitions"]))))
+```
+
 
 You can now open a command prompt and type `lein cucumber`, it should produce the following:
 
@@ -85,27 +96,13 @@ Looking for glue in:  [features/step_definitions]
 
 The 4 points above indicate that the test are passing. Well done!
 
-
 Note: The BDD example was taken from the official [Cucumber website](http://cukes.info).
 
 
 ## Step 2 - Launch BDD tests with Cursive
 
 At that point, we'd like to be able to launch the tests from Cursive which uses `clojure.test`.
-The cucumber-jvm repo has an [example](https://github.com/cucumber/cucumber-jvm/blob/master/examples/clojure_cukes/test/clojure_cukes/test/core.clj).
-Let's define something similar in the `test` folder:
 
-``` clojure
-(ns calculator.core-test
-  (:require [clojure.test :refer [deftest]])
-  
-(deftest run-cukes
-  (. cucumber.api.cli.Main (main
-                             (into-array ["--format"
-                                          "pretty"
-                                          "--glue"
-                                          "feature/step_definitions"]))))
-```
 
 If you execute the "Run tests in current NS in REPL" command within the `calculator.core-test` ns, 
 you should get the following exception:
@@ -114,6 +111,7 @@ you should get the following exception:
 Exception java.lang.ClassNotFoundException: cucumber.api.cli.Main, compiling:(calculator/test/calculator/core_test.clj:5:3)
 ```
 
+That's because the cucumber.api.cli.Main is located in  
 
 
 First, let's modify the test directory structure. 
