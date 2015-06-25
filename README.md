@@ -48,7 +48,7 @@ named `addition.clj` in the `features/step_definitions` folder:
 ```
  
 
-Create the following namespace in the `src` directory:
+It's time to implement the complex mechanic of our calculator. Create the following namespace in the `src` directory:
 
 ``` clojure
 (ns calculator.core)
