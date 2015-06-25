@@ -7,6 +7,4 @@
   :dependencies [[org.clojure/clojure "1.7.0-RC2"]
                  [info.cukes/cucumber-clojure "1.1.1"]]
   :plugins [[lein-cucumber "1.0.2"]]
-  :test-paths ["test/acceptance/features" "test/acceptance/step_definitions" "test/clj"]
-  :cucumber-feature-paths ["test/acceptance/features"]
   )
