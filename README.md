@@ -2,13 +2,15 @@
 
 First of all, because we never say "thank you" enough, kudos to:
  
-- Aslak Hellesøy for creating [cucumber-jvm](https://github.com/cucumber/cucumber-jvm) which is a very useful tool to write much better software.
-- Colin Fleming for [Cursive](https://cursiveclojure.com) which rocks
-- Phil Hagelberg for [Leiningen](http://leiningen.org) which does so much for you.
 - Rich Hickey for [Clojure](http://clojure.org) for which I have no words strong enough to praise.
+- Colin Fleming for [Cursive](https://cursiveclojure.com) which rocks
+- Aslak Hellesøy for [cucumber-jvm](https://github.com/cucumber/cucumber-jvm) which is a very useful tool to write much better software.
+- Phil Hagelberg for [Leiningen](http://leiningen.org) which does so much for you.
+- Nils Wloka for the [leiningen-cucumber](https://github.com/nilswloka/lein-cucumber) plugin which helped me getting started. 
 
-
-I'll walk you through a very simple example to demonstrate how you can do BDD in Clojure with the tools above. 
+I'll walk you through a very simple example to demonstrate how you can do BDD in Clojure with the tools above.
+The main objective of this repo is to have a minimalistic example for Colin to improve support for cucumber-jvm 
+in Cursive (Colin, check out the end of this README for the wishlist !). 
 
 ## Step 1 - Launch BDD tests with Leiningen
 
@@ -84,7 +86,6 @@ Then add a clojure.test test as instructed on the [cucumber-jvm clojure how-to](
                                           "features/step_definitions"]))))
 ```
 
-
 You can now open a command prompt and type `lein cucumber`, it should produce the following:
 
 ```
@@ -103,7 +104,6 @@ Note: The BDD example was taken from the official [Cucumber website](http://cuke
 
 At that point, we'd like to be able to launch the tests from Cursive which uses `clojure.test`.
 
-
 If you execute the "Run tests in current NS in REPL" command within the `calculator.core-test` ns, 
 you should get the following exception:
           
@@ -111,17 +111,33 @@ you should get the following exception:
 Exception java.lang.ClassNotFoundException: cucumber.api.cli.Main, compiling:(calculator/test/calculator/core_test.clj:5:3)
 ```
 
-That's because the cucumber.api.cli.Main is located in  
+That's normal because the cucumber.api.cli.Main is located in the cucumber-clojure jar which is not in your
+  leiningen dependencies. It worked with the lein-cucumber plugin above because it [adds dynamically](https://github.com/nilswloka/lein-cucumber/blob/55c24a7a5bfee070bd45cef68732beb1c36b8ce7/src/leiningen/cucumber.clj#L36-L37) 
+  the dependency when you run the `lein cucumber` command.
 
+So, let's add the same version (to avoid conflicts) explicitly in our `:dependencies` vector:
+
+```
+[info.cukes/cucumber-clojure "1.1.1"]
+```
 
 First, let's modify the test directory structure. 
 ```step_definitions```needs to be a test root so that `addition.clj` is found when executing the tests.
 
-
+``` bash
 lein cucumber --glue test/acceptance/step_definitions
-
+```
 
 ## Step 3 - Launch BDD tests with IntelliJ cucumber-jvm plugin
  
  You can right click in the `addition.feature` file on the `Feature:` word or on a `Scenario:` word and click "Create Feature:..." or "Create Scenario:..."
+ 
+ 
+# Cursive BDD wishlist
+
+- Add autocompletion for steps.
+- Support "find usage" from stepdefs to steps.
+- Right click on a scenario or feature section in a gherkin file and run it or debug it 
+
+
  
