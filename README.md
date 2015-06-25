@@ -1,5 +1,14 @@
-# How to do BDD with cucumber-jvm with Leiningen and Cursive
+# BDD in a Clojure project with cucumber-jvm, Leiningen and Cursive
 
+First of all, because we never say "thank you" enough, kudos to:
+ 
+- Aslak Hellesoy for creating [cucumber-jvm](https://github.com/cucumber/cucumber-jvm) which is a very useful tool to write much better software.
+- Colin Fleming for [Cursive](https://cursiveclojure.com) which rocks
+- Phil Hagelberg for [Leiningen](http://leiningen.org) which does so much for you.
+- Rich Hickey for [Clojure](http://clojure.org) for which I have no words strong enough to praise.
+
+
+I'll walk you through a very simple example to demonstrate how you can do BDD in Clojure with the tools above. 
 
 ## Step 1 - Launch BDD tests with Leiningen
 
