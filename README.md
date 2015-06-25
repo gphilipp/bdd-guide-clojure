@@ -12,7 +12,16 @@ I'll walk you through a very simple example to demonstrate how you can do BDD in
 The main objective of this repo is to have a minimalistic example for Colin to improve support for cucumber-jvm 
 in Cursive (Colin, check out the end of this README for the wishlist !). 
 
-## Step 1 - Launch BDD tests with Leiningen
+I'll walk you through a very simple example to demonstrate how you can do BDD in Clojure with the tools above.
+The main objective of this repo is to have a minimalistic example for Colin to improve support for cucumber-jvm 
+in Cursive (Colin, check out the end of this README for the wishlist !). 
+
+## Step 1 - Install plugins
+
+Install the "Gherkin" and "Cucumber for Java" plugins from Jetbrains plugin repository.
+Detailed instructions here: https://www.jetbrains.com/idea/help/cucumber.html
+
+## Step 2 - Launch BDD tests with Leiningen
 
 First, create a fresh new project:
 
@@ -34,6 +43,8 @@ Feature: Addition
     When I press add
     Then the result should be 120 on the screen
 ```
+
+Since you've installed the Gherkin plugin you should have syntax highlighting and a nice little Cucumber icon for the feature file.
 
 Now, let's implement this scenario. We have to create the glue (called step definitions) which will link the
 BDD text to our future code. Add a folder under `features` called `step_definitions` and create a file 
@@ -100,12 +111,21 @@ The 4 points above indicate that the test are passing. Well done!
 Note: The BDD example was taken from the official [Cucumber website](http://cukes.info).
 
 
-## Step 2 - Launch BDD tests with Cursive
+## Step 2 - Edit the glue file with Cursive
 
-At that point, we'd like to be able to launch the tests from Cursive which uses `clojure.test`.
+At that point, `addition.clj` looks like this in Cursive: 
+
 
 If you execute the "Run tests in current NS in REPL" command within the `calculator.core-test` ns, 
 you should get the following exception:
+
+![](images/cursive-support-1.png)
+
+
+## Step 3 - Launch BDD tests with Cursive
+
+It'd be better if we could launch the tests from Cursive with "Run tests in current NS in REPL" which supports only `clojure.test` for now.
+If you run the command within the `calculator.core-test` ns, you should get the following exception:
           
 ```
 Exception java.lang.ClassNotFoundException: cucumber.api.cli.Main, compiling:(calculator/test/calculator/core_test.clj:5:3)
@@ -128,16 +148,28 @@ First, let's modify the test directory structure.
 lein cucumber --glue test/acceptance/step_definitions
 ```
 
-## Step 3 - Launch BDD tests with IntelliJ cucumber-jvm plugin
+...
+
+Update those keys in  `project.clj`
+
+```clojure
+:test-paths ["test/acceptance/features" "test/acceptance/step_definitions" "test/clj"]
+:cucumber-feature-paths ["test/acceptance/features"]
+```
+
+## Step 4 - Launch BDD tests with IntelliJ cucumber-jvm plugin
  
  You can right click in the `addition.feature` file on the `Feature:` word or on a `Scenario:` word and click "Create Feature:..." or "Create Scenario:..."
  
  
 # Cursive BDD wishlist
 
-- Add autocompletion for steps.
-- Support "find usage" from stepdefs to steps.
-- Right click on a scenario or feature section in a gherkin file and run it or debug it 
+I'd like Cursive or Jetbrains to create a "Cucumber for Clojure" plugin which would support the same as the "Cucumber for Java" plugin :
+- Autocompletion for steps.
+- "find usage" from stepdefs to steps.
+- Right click on a scenario or feature section in a gherkin file and run it or debug it
+ 
+ Hey, Scala has a plugin: https://plugins.jetbrains.com/plugin/7460?pr=mps
 
 
  
