@@ -5,13 +5,13 @@
 
 First, create a fresh new project:
 
-```
+``` bash
 lein new calculator
 ``` 
 
-Create a new folder called `features` and create a new file called `addition.clj` in that directory.
+Create a new folder called `features` and add a new file called `addition.clj` in that directory with the following content: 
 
-```
+``` gherkin
 Feature: Addition
   In order to avoid silly mistakes
   As a math idiot
@@ -25,10 +25,10 @@ Feature: Addition
 ```
 
 Now, let's implement this scenario. We have to create the glue (called step definitions) which will link the
-BDD text to our future code. Create a folder in `features` called `step_definitions` and put a file 
-named `addition.clj` in the `features/step_definitions`: 
+BDD text to our future code. Add a folder under `features` called `step_definitions` and create a file 
+named `addition.clj` in the `features/step_definitions` folder: 
 
-```
+``` clojure
 (use 'calculator.core) ;; yes, no namespace declaration
 (use 'clojure.test)
 
@@ -50,7 +50,7 @@ named `addition.clj` in the `features/step_definitions`:
 
 Create the following namespace in the `src` directory:
 
-```
+``` clojure
 (ns calculator.core)
 
 (defn addition
@@ -59,9 +59,9 @@ Create the following namespace in the `src` directory:
   (+ x y))
 ```
 
-Update your `project.clj` and add the `lein-cucumber` plugin:
+Update your `project.clj` and add the [lein-cucumber](https://github.com/nilswloka/lein-cucumber) plugin:
 
-```
+``` clojure
 :plugins [[lein-cucumber "1.0.2"]]
 ```
 
@@ -77,7 +77,7 @@ Looking for glue in:  [features/step_definitions]
 The 4 points above indicate that the test are passing. Well done!
 
 
-Note: This example was taken from [Cucumber website](http://cukes.info) 
+Note: The BDD example was taken from the official [Cucumber website](http://cukes.info).
 
 
 ## Step 2 - Launch BDD tests with Cursive
@@ -86,7 +86,7 @@ At that point, we'd like to be able to launch the tests from Cursive which uses 
 The cucumber-jvm repo has an [example](https://github.com/cucumber/cucumber-jvm/blob/master/examples/clojure_cukes/test/clojure_cukes/test/core.clj).
 Let's define something similar in the `test` folder:
 
-```
+``` clojure
 (ns calculator.core-test
   (:require [clojure.test :refer [deftest]])
   
@@ -98,7 +98,8 @@ Let's define something similar in the `test` folder:
                                           "feature/step_definitions"]))))
 ```
 
-Now execute the "Run tests in current NS in REPL" command in the ```core-test``` ns, you should get the following exception:
+If you execute the "Run tests in current NS in REPL" command within the `calculator.core-test` ns, 
+you should get the following exception:
           
 ```
 Exception java.lang.ClassNotFoundException: cucumber.api.cli.Main, compiling:(calculator/test/calculator/core_test.clj:5:3)
