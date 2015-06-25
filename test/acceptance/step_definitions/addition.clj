@@ -1,14 +1,16 @@
+#_(ns addition.clj
+  (:require [calculator.core]
+            [clojure.test]))
+
 (use 'calculator.core)
 (use 'clojure.test)
 
 (def world (atom {:inputs []
                   :result nil}))
 
-
 (Given #"^I have entered (\d+) into the calculator$" [input]
        (swap! world update :inputs conj (bigdec input))
        )
-
 
 (When #"^I press add$" []
       (swap! world assoc :actual-result (reduce + (:inputs @world))))
