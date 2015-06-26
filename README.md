@@ -201,8 +201,7 @@ Remember, refresh leiningen + restart fresh REPL. If one of the
 three directories doesn't have a green background, something went wrong, just close
 the project and reopen it, it happened to me and everything was ok afterwards.
  
-
-You can now run the tests from Cursive, TADA ! 
+You can now run the tests from Cursive. 
  
 ![Test execution in Cursive with exit](images/test_exec_cursive_with_exit.png)
 
@@ -239,6 +238,14 @@ Here's the workaround:
     ))
 ```
 
+If you look at it, it's not actually that useful because it won't tell you visually
+which step failed and you'll have to scroll the text on the right to find out. Furthermore, 
+the "don't kill the repl trick" won't be much helpful since the text output is produced only once
+by cucumber-jvm at the first execution. Later executions will only print out the test statistics.
+
+Don't worry all is not lost, the best is yet to come, keep reading !
+
+
 Note that can still run `lein cucumber``` by adding the `--glue` option:
 
 ``` bash
@@ -247,7 +254,7 @@ lein cucumber --glue test/acceptance/step_definitions
 
 ## Step 5
 
-The best is yet to come, I discovered that you can also use the Jetbrains cucumber for Java plugin to launch your test !
+I discovered that you can also use the Jetbrains cucumber for Java plugin to launch your test !
 
 You just have to right-click on a `Feature:` or `Scenario:` section in the feature file and choose `create Feature:...` or `create Scenario:...`. 
 
