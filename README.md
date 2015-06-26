@@ -62,7 +62,9 @@ named `addition_stepdefs.clj` in the `features/step_definitions` folder:
 (Then #"^the result should be (\d+) on the screen$" [result]
       (assert (= (bigdec result) (:actual-result @world))))
 ```
- 
+
+**Note:** Make sure to use `assert` instead of `is` for your checks.
+
 It's time to implement the complex mechanic of our calculator. 
 Update `calculator.core` to look like this :
 
