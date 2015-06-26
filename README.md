@@ -80,9 +80,7 @@ Add the [lein-cucumber](https://github.com/nilswloka/lein-cucumber) plugin to yo
 :plugins [[lein-cucumber "1.0.2"]]
 ```
 
-Note that contrary to what's explained on the Add a clojure.test test as instructed on the [cucumber-jvm clojure how-to](https://github.com/cucumber/cucumber-jvm/tree/master/clojure) :
-
-
+Note that contrary to what is explained on the [cucumber-jvm clojure how-to](https://github.com/cucumber/cucumber-jvm/tree/master/clojure) page, you don't need to add an entry point as a `clojure.test`. We'll do that in the next step instead.
 
 Now open a command prompt and type `lein cucumber`, it should produce the following:
 
