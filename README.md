@@ -277,6 +277,7 @@ It works ok, but there are a few minor issues:
     ```
 
 - Each step of the feature is printed twice in a row (see screenshot above)
+- Status is always green using the Jetbrains cucumber for java runner event if there are failing tests.
 
 I'd really like Cursive or Jetbrains to create a "Cucumber for Clojure" plugin which would support the same as the "Cucumber for Java" plugin :
 - Autocompletion for steps.
