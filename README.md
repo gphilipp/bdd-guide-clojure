@@ -4,7 +4,7 @@ First of all, because we never say "thank you" enough, kudos to:
  
 - Rich Hickey for [Clojure](http://clojure.org) for which I have no words strong enough to praise.
 - Colin Fleming for [Cursive](https://cursiveclojure.com) which totally rocks.
-- Aslak Hellesøy for [cucumber-jvm](https://github.com/cucumber/cucumber-jvm) which is a very useful tool to write much better software.
+- Aslak Hellesøy for [cucumber-jvm](https://github.com/cucumber/cucumber-jvm) which is a very useful tool to write better software.
 - Phil Hagelberg for [Leiningen](http://leiningen.org) which does so much for you.
 - Nils Wloka for the [leiningen-cucumber](https://github.com/nilswloka/lein-cucumber) plugin which helped me getting started. 
 
