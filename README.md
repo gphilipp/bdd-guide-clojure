@@ -246,6 +246,28 @@ Note that can still run `lein cucumber``` by adding the `--glue` option:
 lein cucumber --glue test/acceptance/step_definitions
 ```
 
+## Step 5
+
+The best is yet to come, I discovered you can also use the Jetbrains cucumber for Java plugin to launch your test !
+You just have to right-click on a `Feature:` or `Scenario:` section in the feature file and choose `create Feature:...` 
+or `create Scenario:...`. 
+
+This will display a configuration dialog where you'll have to customize two things: the glue and the VM options.
+The latter is necessary because it seems that the `:source-paths` and `:test-paths` are not passed to the JVM process that runs the tests.
+To avoid doing this each time you create a configuration, just configure it once and for all in the defaults, so that all new 
+configurations have the correct parameters :
+
+![Defaults for cucumber-java configs](images/defaults-for-cucumber-java.png)
+
+Now, run the configuration:
+
+![Run clojure BDD with cucumber-java](images/run-clojure-bdd-with-cucumber-java.png)
+
+
+
+Nice isn't it ?
+
+
 ## Conclusion 
 It works ok, but there are a few minor issues:
 
