@@ -235,6 +235,7 @@ Here's the workaround:
     (doto runtime
       (.writeStepdefsJson)
       (.run))
+     (is (= 0 (.exitStatus runtime)))
     ))
 ```
 
