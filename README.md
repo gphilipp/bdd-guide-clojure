@@ -25,7 +25,7 @@ First, create a fresh new project:
 lein new calculator
 ``` 
 
-Create a `features` folder and add a new file named `addition-stepdefs.clj` in that folder with the following content: 
+Create a `features` folder and add a new file named `addition_stepdefs.clj` in that folder with the following content: 
 
 ``` gherkin
 Feature: Addition
@@ -44,7 +44,7 @@ Since you've installed the Gherkin plugin you should have syntax highlighting an
 
 Now, let's implement this scenario. We have to create the glue (called step definitions) which will link the
 BDD text to our future code. Add a folder under `features` called `step_definitions` and create a file 
-named `addition-stepdefs.clj` in the `features/step_definitions` folder: 
+named `addition_stepdefs.clj` in the `features/step_definitions` folder: 
 
 ``` clojure
 (use 'calculator.core) ;; yes, no namespace declaration
@@ -98,12 +98,12 @@ Note: The BDD example was taken from the official [Cucumber website](http://cuke
 
 ## Step 3 - Edit the glue file with Cursive
 
-At that point, `addition-stepdefs.clj` looks like this in Cursive: 
+At that point, `addition_stepdefs.clj` looks like this in Cursive: 
 
 ![](images/cursive-support-1.png)
 
 There are two issues:
-- A warning message in the top yellow box saying `File addition.clj is not under a source root'.
+- A warning message in the top yellow box saying `File addition_stepdefs.clj is not under a source root'.
 - Cursive suggest to import some When class from javafx.
 
 Both are easy to fix. To ged rid of the warning message, add this to your `project.clj`:
@@ -159,7 +159,7 @@ Refresh in the Leiningen toolwindow, restart a fresh repl and re-run the "Run te
 Kaboom another issue:
 
 ```
-cucumber.runtime.CucumberException: java.io.FileNotFoundException: Could not locate addition__init.class or addition.clj on classpath.
+cucumber.runtime.CucumberException: java.io.FileNotFoundException: Could not locate addition_stepdefs__init.class or addition_stepdefs.clj on classpath.
  at cucumber.runtime.clj$load_script.invoke (clj.clj:42)
     cucumber.runtime.clj$_loadGlue$fn__1444.invoke (clj.clj:54)
     cucumber.runtime.clj$_loadGlue.invoke (clj.clj:53)
