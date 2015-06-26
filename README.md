@@ -4,7 +4,7 @@ First of all, because we never say "thank you" enough, kudos to:
  
 - Rich Hickey for [Clojure](http://clojure.org) for which I have no words strong enough to praise.
 - Colin Fleming for [Cursive](https://cursiveclojure.com) which totally rocks.
-- Aslak Hellesøy for [cucumber-jvm](https://github.com/cucumber/cucumber-jvm) which is a very useful tool to write better software.
+- Aslak Hellesøy for [cucumber-jvm](https://github.com/cucumber/cucumber-jvm) which is a very useful tool to write much better software.
 - Phil Hagelberg for [Leiningen](http://leiningen.org) which does so much for you.
 - Nils Wloka for the [leiningen-cucumber](https://github.com/nilswloka/lein-cucumber) plugin which helped me getting started. 
 
@@ -247,13 +247,8 @@ Note that can still run `lein cucumber``` by adding the `--glue` option:
 lein cucumber --glue test/acceptance/step_definitions
 ```
 
-
-## Step 5 - Launch BDD tests with IntelliJ cucumber-jvm plugin
- 
- You can right click in the `addition.feature` file on the `Feature:` word or on a `Scenario:` word and click "Create Feature:..." or "Create Scenario:..."
- 
- 
-# Cursive BDD idiosyncrasies and wishlist
+## Conclusion 
+It works ok, but there are a few minor issues:
 
 - Running the BDD tests in Cursive yields this cryptic error 
 
@@ -263,8 +258,7 @@ lein cucumber --glue test/acceptance/step_definitions
 
 - Each step of the feature is printed twice in a row (see screenshot above)
 
-
-I'd like Cursive or Jetbrains to create a "Cucumber for Clojure" plugin which would support the same as the "Cucumber for Java" plugin :
+I'd really like Cursive or Jetbrains to create a "Cucumber for Clojure" plugin which would support the same as the "Cucumber for Java" plugin :
 - Autocompletion for steps.
 - "find usage" from stepdefs to steps.
 - Right click on a scenario or feature section in a gherkin file and run it or debug it
