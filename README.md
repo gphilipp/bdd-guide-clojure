@@ -248,7 +248,9 @@ lein cucumber --glue test/acceptance/step_definitions
 
 ## Step 5
 
-The best is yet to come, I discovered you can also use the Jetbrains cucumber for Java plugin to launch your test !
+I discovered that you can also use the Jetbrains cucumber for Java plugin to launch your test, but the results is always
+green even if there's a failing test. That might be a starting point to have proper support later.
+
 You just have to right-click on a `Feature:` or `Scenario:` section in the feature file and choose `create Feature:...` 
 or `create Scenario:...`. 
 
@@ -263,9 +265,8 @@ Now, run the configuration:
 
 ![Run clojure BDD with cucumber-java](images/run-clojure-bdd-with-cucumber-java.png)
 
-
-
-Nice isn't it ?
+The status is not correct because the test is failing, but it's nice still, isn't it ? 
+I'm open to suggestions if anybody finds a workaround.
 
 
 ## Conclusion 
