@@ -108,7 +108,7 @@ There are two issues:
 
 Both are easy to fix. To ged rid of the warning message, add this to your `project.clj`:
 
-```
+``` clojure
 :test-paths ["features" "test"]
 ```
 
@@ -151,7 +151,7 @@ That's perfectly normal because the cucumber.api.cli.Main class is located in th
 
 Let's fix this by adding the dependency (the same version as lein-cucumber to avoid conflicts) in our `:dependencies` vector:
 
-```
+``` clojure
 [info.cukes/cucumber-clojure "1.1.1"]
 ```
 
@@ -246,7 +246,7 @@ by cucumber-jvm at the first execution. Later executions will only print out the
 Don't worry all is not lost, the best is yet to come, keep reading !
 
 
-Note that can still run `lein cucumber``` by adding the `--glue` option:
+Note that can still run the scenarios with Leiningen by adding a `--glue` option:
 
 ``` bash
 lein cucumber --glue test/acceptance/step_definitions
