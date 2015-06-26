@@ -197,7 +197,7 @@ deftest run-cukes
                                           "test/acceptance/step_definitions"
                                           "test/acceptance/features"
                                           ])))
-``
+```
  
 Remember, refresh leiningen + restart fresh REPL. If one of the
 three directories doesn't have a green background, something went wrong, just close
