@@ -257,13 +257,19 @@ Remember, this is a java plugin, source paths are not passed down to the classpa
 
 ![Defaults for cucumber-java configs](images/defaults-for-cucumber-java.png)
 
+Before we run, let's modify the code to introduce a failure. Modify the `addition-stepdefs` ns like this:
+
+```
+(When #"^I press add$" []
+      (swap! world assoc :actual-result (+ 1 (reduce add (:inputs @world)))))
+```
+
+
 Now, run the configuration:
 
 ![Run clojure BDD with cucumber-java](images/run-clojure-bdd-with-cucumber-java.png)
 
-The status is not correct because the test is failing, but it's nice still, isn't it ? 
-I'm open to suggestions if anybody finds a workaround.
-
+It works perfectly !
 
 ## Conclusion 
 

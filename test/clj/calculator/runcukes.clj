@@ -1,9 +1,9 @@
-(ns calculator.core-test
+(ns calculator.runcukes
   (:require [clojure.test :refer [deftest is]])
   (:import (cucumber.runtime RuntimeOptions)
            (cucumber.runtime.io MultiLoader)))
 
-(deftest run-cukes
+(deftest run
   (let [classloader (.getContextClassLoader (Thread/currentThread))
         runtime-options (RuntimeOptions.
                           (System/getProperties)
