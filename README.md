@@ -25,7 +25,7 @@ First, create a fresh new project:
 lein new calculator
 ``` 
 
-Create a `features` folder and add a new file named `addition.clj` in that folder with the following content: 
+Create a `features` folder and add a new file named `addition-stepdefs.clj` in that folder with the following content: 
 
 ``` gherkin
 Feature: Addition
@@ -44,7 +44,7 @@ Since you've installed the Gherkin plugin you should have syntax highlighting an
 
 Now, let's implement this scenario. We have to create the glue (called step definitions) which will link the
 BDD text to our future code. Add a folder under `features` called `step_definitions` and create a file 
-named `addition.clj` in the `features/step_definitions` folder: 
+named `addition-stepdefs.clj` in the `features/step_definitions` folder: 
 
 ``` clojure
 (use 'calculator.core) ;; yes, no namespace declaration
@@ -60,7 +60,7 @@ named `addition.clj` in the `features/step_definitions` folder:
       (swap! world assoc :actual-result (reduce add (:inputs @world))))
 
 (Then #"^the result should be (\d+) on the screen$" [result]
-      (is (= (bigdec result) (:actual-result @world))))
+      (assert (= (bigdec result) (:actual-result @world))))
 ```
  
 It's time to implement the complex mechanic of our calculator. 
@@ -98,7 +98,7 @@ Note: The BDD example was taken from the official [Cucumber website](http://cuke
 
 ## Step 3 - Edit the glue file with Cursive
 
-At that point, `addition.clj` looks like this in Cursive: 
+At that point, `addition-stepdefs.clj` looks like this in Cursive: 
 
 ![](images/cursive-support-1.png)
 
@@ -246,16 +246,14 @@ lein cucumber --glue test/acceptance/step_definitions
 
 ## Step 5
 
-I discovered that you can also use the Jetbrains cucumber for Java plugin to launch your test, but the results is always
-green even if there's a failing test. That might be a starting point to have proper support later.
+The best is yet to come, I discovered that you can also use the Jetbrains cucumber for Java plugin to launch your test !
 
-You just have to right-click on a `Feature:` or `Scenario:` section in the feature file and choose `create Feature:...` 
-or `create Scenario:...`. 
+You just have to right-click on a `Feature:` or `Scenario:` section in the feature file and choose `create Feature:...` or `create Scenario:...`. 
 
 This will display a configuration dialog where you'll have to customize two things: the glue and the VM options.
-The latter is necessary because it seems that the `:source-paths` and `:test-paths` are not passed to the JVM process that runs the tests.
-To avoid doing this each time you create a configuration, just configure it once and for all in the defaults, so that all new 
-configurations have the correct parameters :
+To avoid doing this each time you create a configuration, just configure it once and for all under the `Defaults->Cucumber Java ` category.
+
+Remember, this is a java plugin, source paths are not passed down to the classpath to the JVM process that runs the tests, only directories declared as output directories (like `target/classes` or `out`).  So, we need a way to add them to the classpath somehow. Good old `-Xbootclasspath` to the rescue ! Enter this in the VM option field: `-Xbootclasspath/p:test/acceptance/step_definitions:src:test/clj`. Don't forget to add resources directories as well if needed by your tests.
 
 ![Defaults for cucumber-java configs](images/defaults-for-cucumber-java.png)
 
@@ -268,24 +266,20 @@ I'm open to suggestions if anybody finds a workaround.
 
 
 ## Conclusion 
-It works ok, but there are a few minor issues:
 
+I think it works great all in all, with those minor quirks:
+
+- Each step of the feature is printed twice in a row (see screenshot above) when using Cursive test execution.
 - Running the BDD tests in Cursive yields this cryptic error 
 
     ```
     Error handling response - class java.lang.IllegalArgumentException: Argument for @NotNull parameter 'path' of com/intellij/openapi/vfs/impl/local/LocalFileSystemBase.findFileByPath must not be null
     ```
 
-- Each step of the feature is printed twice in a row (see screenshot above)
-- Status is always green using the Jetbrains cucumber for java runner event if there are failing tests.
-
-I'd really like Cursive or Jetbrains to create a "Cucumber for Clojure" plugin which would support the same as the "Cucumber for Java" plugin :
+So, what's missing now is : 
 - Autocompletion for steps.
 - "find usage" from stepdefs to steps.
-- Right click on a scenario or feature section in a gherkin file and run it or debug it
  
 Hey, even Scala has a [plugin](https://plugins.jetbrains.com/plugin/7460?pr=mps), we can't let it at rest :smile: 
 
 Have BDD fun !
-
- 

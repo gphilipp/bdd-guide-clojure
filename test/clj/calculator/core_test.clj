@@ -1,5 +1,5 @@
 (ns calculator.core-test
-  (:require [clojure.test :refer [deftest]])
+  (:require [clojure.test :refer [deftest is]])
   (:import (cucumber.runtime RuntimeOptions)
            (cucumber.runtime.io MultiLoader)))
 
@@ -19,5 +19,6 @@
     (doto runtime
       (.writeStepdefsJson)
       (.run))
+    (is (= 0 (.exitStatus runtime)))
     ))
 
