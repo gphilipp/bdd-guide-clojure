@@ -181,14 +181,14 @@ I'd suggest something like this:
 
 Reflect that new setup in your `project.clj`:
 
-```
+``` clojure
 :test-paths ["test/acceptance/features" "test/acceptance/step_definitions" "test/clj"]
 :cucumber-feature-paths ["test/acceptance/features"]
 ```
 
 Update the test namespaces to tell where the features are:
 
-```
+``` clojure
 deftest run-cukes
   (. cucumber.api.cli.Main (main
                              (into-array ["--format"
@@ -220,8 +220,7 @@ Here's the workaround:
   (:require [clojure.test :refer [deftest]])
   (:import (cucumber.runtime.io MultiLoader)
            (cucumber.runtime RuntimeOptions)))
-
-
+           
 (deftest run-cukes
   (let [classloader (.getContextClassLoader (Thread/currentThread))
         runtime-options (RuntimeOptions.
