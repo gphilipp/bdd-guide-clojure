@@ -25,7 +25,7 @@ First, create a fresh new project:
 lein new calculator
 ``` 
 
-Create a `features` folder and add a new file named `addition_stepdefs.clj` in that folder with the following content: 
+Create a `features` folder and add a new file named `addition.feature` in that folder with the following content: 
 
 ``` gherkin
 Feature: Addition
