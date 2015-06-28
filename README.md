@@ -281,6 +281,11 @@ Now, run the configuration:
 
 It works perfectly !
 
+You can also press the "Export Test result" in the Run toolview to generate a nice HTML report:
+
+![HTML report](images/html_report.png)
+  
+
 ## Conclusion 
 
 I think it works great all in all, with those minor quirks:
