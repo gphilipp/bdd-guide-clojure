@@ -12,4 +12,4 @@
       (swap! world assoc :actual-result (+ 1 (reduce add (:inputs @world)))))
 
 (Then #"^the result should be (\d+) on the screen$" [expected-result]
-      (assert (= (bigdec expected-result) (:actual-result @world))))
+      (is (= (bigdec expected-result) (:actual-result @world))))

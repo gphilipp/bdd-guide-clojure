@@ -281,6 +281,12 @@ Now, run the configuration:
 
 It works perfectly !
 
+**Note:** if you use `(if ...)` instead of `(assert ...)` in stepdefs, the error message will be clearer 
+but all tests will be displayed as green even if there are failures:
+
+![Using is](images/runner_with_is_in_stefdefs.png).
+ 
+
 You can also press the "Export Test result" in the Run toolview to generate a nice HTML report:
 
 ![HTML report](images/html_report.png)
