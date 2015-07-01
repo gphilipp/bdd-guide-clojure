@@ -216,7 +216,7 @@ Here's the workaround:
 
 ``` clojure
 (ns calculator.core-test
-  (:require [clojure.test :refer [deftest]])
+  (:require [clojure.test :refer [deftest is]])
   (:import (cucumber.runtime.io MultiLoader)
            (cucumber.runtime RuntimeOptions)))
            
